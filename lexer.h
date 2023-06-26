@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (C) Rida Bazzi, 2016
  * Edited by Joshua Elkins, 2023
  *
@@ -20,7 +20,7 @@ typedef enum { END_OF_FILE = 0, INT, REAL,
    MINUS, MULT, DIV, GTEQ, GREATER, LTEQ,
    NOTEQUAL, LESS, LPAREN, RPAREN, EQUAL,
    COLON, COMMA, SEMICOLON, LBRACE,
-   RBRACE, ID, ERROR
+   RBRACE, ID, ERROR, NULL
 } TokenType;
 
 class Token {

@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 #include "inputbuf.h"
 #include "lexer.h"
@@ -16,26 +17,48 @@ class Parser {
 		LexicalAnalyzer lexer;
 		Token token;
 		TokenType tempTokenType;
-		int parse_program();
+		void parse_program();
+
+        std::unordered_map<std::string, TokenType> map;   // map each ID to a tokentype where NULL was added as a tokentype
+
 	private:
-		int parse_varlist();
-		int parse_unaryOperator();
-		int parse_binaryOperator();
-		int parse_primary();
-		int parse_expression();
-		int parse_assstmt();
-		int parse_case();
-		int parse_caselist();
-		int parse_switchstmt();
-		int parse_whilestmt();
-		int parse_ifstmt();
-		int parse_stmt();
-		int parse_stmtlist();
-		int parse_body();
-		int parse_typename();
-		int parse_vardecl();
-		int parse_vardecllist();
-		int parse_globalVars();
+        void syntax_error();
+
+        void parse_global_vars();
+        void parse_var_decl_list();
+        void parse_var_decl();
+        void parse_var_list();
+        void parse_type_name();
+        void parse_body();
+        void parse_stmt_list();
+        void parse_stmt();
+        void parse_assignment_stmt();
+        void parse_expression();
+        void parse_unary_operator();
+        void parse_binary_operator();
+        void parse_primary();
+        void parse_if_stmt();
+        void parse_while_stmt();
+        void parse_switch_stmt();
+        void parse_case_list();
+        void parse_case();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
 
 #endif  //__PARSER__H__
