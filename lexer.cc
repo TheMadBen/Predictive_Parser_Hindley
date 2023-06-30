@@ -17,11 +17,18 @@
 
 using namespace std;
 
-string reserved[] = { "END_OF_FILE", "INT", "REAL", "BOO", "TR", "FA", "IF", "WHILE", "SWITCH", "CASE", "PUBLIC", "PRIVATE", "NUM", "REALNUM", "NOT", "PLUS", "MINUS", "MULT", "DIV", "GTEQ", "GREATER", "LTEQ", "NOTEQUAL", "LESS", "LPAREN", "RPAREN", "EQUAL", "COLON", "COMMA", "SEMICOLON", "LBRACE", "RBRACE", "ID", "ERROR", "NULL"
+string reserved[] = { "END_OF_FILE", "INT", "REAL", "BOO", "TR", "FA", "IF", "WHILE", "SWITCH", "CASE", "PUBLIC", "PRIVATE", "NUM", "REALNUM", "NOT", "PLUS", "MINUS", "MULT", "DIV", "GTEQ", "GREATER", "LTEQ", "NOTEQUAL", "LESS", "LPAREN", "RPAREN", "EQUAL", "COLON", "COMMA", "SEMICOLON", "LBRACE", "RBRACE", "ID", "ERROR", "NL", "T"
 };
 
 #define KEYWORDS_COUNT 11
 string keyword[] = { "int", "real", "bool", "true", "false", "if", "while", "switch", "case", "public", "private" };
+
+void Token::Print()
+{
+    cout << "{" << this->lexeme << " , "
+         << reserved[(int) this->token_type] << " , "
+         << this->line_no << "}\n";
+}
 
 LexicalAnalyzer::LexicalAnalyzer()
 {

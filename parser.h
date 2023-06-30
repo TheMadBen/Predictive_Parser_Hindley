@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include "inputbuf.h"
 #include "lexer.h"
@@ -17,31 +18,44 @@ class Parser {
 		LexicalAnalyzer lexer;
 		Token token;
 		TokenType tempTokenType;
-		void parse_program();
+		int parse_program();
 
-        std::unordered_map<std::string, TokenType> map;   // map each ID to a tokentype where NULL was added as a tokentype
+        struct Variable {
+            std::string lexeme = "";
+            TokenType type = NL;
+            int line_num = 0;
+            int aType = 0;
+            bool printed = false;
+        };
+        int aInc = 1;
+
+        std::string output = "";
+        bool cont = false;
+
+        std::unordered_map<std::string, Variable> map;   // map each ID to a struct variable
+        std::vector<std::string> vec; // string vector to keep track of the order in which the variables were added
+
+        std::vector<int> vecType;
 
 	private:
-        void syntax_error();
-
-        void parse_global_vars();
-        void parse_var_decl_list();
-        void parse_var_decl();
-        void parse_var_list();
-        void parse_type_name();
-        void parse_body();
-        void parse_stmt_list();
-        void parse_stmt();
-        void parse_assignment_stmt();
-        void parse_expression();
-        void parse_unary_operator();
-        void parse_binary_operator();
-        void parse_primary();
-        void parse_if_stmt();
-        void parse_while_stmt();
-        void parse_switch_stmt();
-        void parse_case_list();
-        void parse_case();
+        int parse_global_vars();
+        int parse_var_decl_list();
+        int parse_var_decl();
+        int parse_var_list();
+        int parse_type_name();
+        int parse_body();
+        int parse_stmt_list();
+        int parse_stmt();
+        int parse_assignment_stmt();
+        Variable parse_expression();
+        int parse_unary_operator();
+        TokenType parse_binary_operator();
+        Variable parse_primary();
+        int parse_if_stmt();
+        int parse_while_stmt();
+        int parse_switch_stmt();
+        int parse_case_list();
+        int parse_case();
 
 
 
