@@ -26,8 +26,9 @@ class Parser {
             int line_num = 0;
             int aType = 0;
             bool printed = false;
+            std::string target = "";
         };
-        int aInc = 1;
+        int aInc = 0;
 
         std::string output = "";
         bool cont = false;
