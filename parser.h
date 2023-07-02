@@ -9,7 +9,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <set>
 
 #include "inputbuf.h"
 #include "lexer.h"
@@ -27,7 +26,6 @@ class Parser {
             int line_num = 0;
             int aType = 0;
             bool printed = false;
-            std::string target = "";
         };
         int aInc = 0;
 
@@ -38,7 +36,6 @@ class Parser {
         std::vector<std::string> vec; // string vector to keep track of the order in which the variables were added
 
         std::vector<int> vecType;
-        std::set<int> set;
 
 	private:
         int parse_global_vars();
