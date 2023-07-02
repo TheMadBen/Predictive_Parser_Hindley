@@ -127,6 +127,7 @@ int Parser::parse_var_list(){
         // since we are in parse_var_list, we know that we went through parse_global_vars
         // so these are explicit declarations
         Variable variable;
+        variable.lexeme = token.lexeme;
         variable.line_num = token.line_no;
 
         map.insert({token.lexeme, variable});
@@ -445,6 +446,17 @@ Parser::Variable Parser::parse_expression(){
         lexer.UngetToken(token);
         parse_unary_operator();
         v = parse_expression();
+
+        if(v.type == T) {
+            v.type = BOO;
+        }
+
+        for(string i : vec) {
+            if((map[i].aType == v.aType) && (map[i].type == T)) {
+                map[i].type = v.type;
+            }
+        }
+
         if(v.type != BOO) {
             type_mismatch(token.line_no, "C3");
         }
@@ -460,6 +472,7 @@ Parser::Variable Parser::parse_expression(){
             map.at(v2.lexeme).type = v1.type;
             map.at(v2.lexeme).aType = v1.aType;
             v2.type = v1.type;  // update the unknown type T
+            v2.aType = v1.aType;    // also update the aType for map updating
 
             for(string i : vec) {
                 if(map.at(i).aType == sameType) {
@@ -474,6 +487,7 @@ Parser::Variable Parser::parse_expression(){
             map.at(v1.lexeme).type = v2.type;
             map.at(v1.lexeme).aType = v2.aType;
             v1.type = v2.type;  // update the unknown type T
+            v1.aType = v2.aType;
 
             for(string i : vec) {
                 if(map.at(i).aType == sameType) {
@@ -512,6 +526,7 @@ Parser::Variable Parser::parse_expression(){
             map.at(v2.lexeme).type = v1.type;
             map.at(v2.lexeme).aType = v1.aType;
             v2.type = v1.type;  // update the unknown type T
+            v2.aType = v1.aType;
 
             // same as below, any v2.aType in the map has to be updated to v1.aType
             // don't forget to also change the type for those as well
@@ -528,6 +543,7 @@ Parser::Variable Parser::parse_expression(){
             map.at(v1.lexeme).type = v2.type;
             map.at(v1.lexeme).aType = v2.aType;
             v1.type = v2.type;  // update the unknown type T
+            v1.aType = v2.aType;
 
             // same as below, any v1.aType in the map has to be updated to v2.aType
             // don't forget to also change the type for those as well
@@ -654,10 +670,6 @@ Parser::Variable Parser::parse_primary(){
                 map.insert({token.lexeme, variable});
                 vec.push_back(token.lexeme);
 
-//                v.lexeme = token.lexeme;
-//                v.type = map.at(token.lexeme).type;
-//                v.line_num = token.line_no;
-//                v.aType = map.at(token.lexeme).aType;
                 v = variable;
             }
         }
@@ -691,8 +703,9 @@ int Parser::parse_if_stmt(){
     if(v.type == T) {
         v.type = BOO;
     }
+
     for(string i : vec) {
-        if(map[i].aType == v.aType) {
+        if((map[i].aType == v.aType) && (map[i].type == T)) {
             map[i].type = v.type;
         }
     }
@@ -733,8 +746,15 @@ int Parser::parse_while_stmt(){
     if(v.type == T) {
         v.type = BOO;
     }
+
     for(string i : vec) {
-        if(map[i].aType == v.aType) {
+        if((map[i].aType == v.aType) && (map[i].type == T)) {
+            map[i].type = v.type;
+        }
+    }
+
+    for(string i : vec) {
+        if(map[i].aType == v.aType && (map[i].type == T)) {
             map[i].type = v.type;
         }
     }
@@ -776,7 +796,7 @@ int Parser::parse_switch_stmt(){
         v.type = INT;
     }
     for(string i : vec) {
-        if(map[i].aType == v.aType) {
+        if(map[i].aType == v.aType && (map[i].type == T)) {
             map[i].type = v.type;
         }
     }
@@ -851,11 +871,11 @@ int main() {
     Parser parser;
     parser.parse_program();
 
-    cout << "lexeme\ttype\tline_num\taType\n";
-    for (auto itr = parser.map.begin(); itr != parser.map.end(); itr++) {
-        cout << itr->first << '\t' << itr->second.type << "\t" << itr->second.line_num << "\t\t"
-        << itr->second.aType << '\n';
-    }
+//    cout << "lexeme\ttype\tline_num\taType\n";
+//    for (auto itr = parser.map.begin(); itr != parser.map.end(); itr++) {
+//        cout << itr->first << '\t' << itr->second.type << "\t" << itr->second.line_num << "\t\t"
+//        << itr->second.aType << '\n';
+//    }
 
     return(0);
 };
