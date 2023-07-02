@@ -206,10 +206,13 @@ int Parser::parse_body(){
         if(token.token_type == END_OF_FILE) {
             lexer.UngetToken(token);
 
+//            cout << "vector of insertion order (vec): corresponding aType" << endl;
+//            for(int i = 0; i < vec.size(); i++) {
+//                cout << vec[i] << "\t" << map.at(vec[i]).aType << endl;
+//            }
+
+
             // at the very end this is where we want to print
-            for(string i : vec) {   // copy aType to vecType
-                vecType.push_back(map.at(i).aType);
-            }
 
             for(int i = 0; i < vec.size(); i++) {
 
@@ -240,16 +243,23 @@ int Parser::parse_body(){
                 }
                 else {
                     type = "?";
-                    int sameType = map.at(vec[i]).aType;
                     if(map.at(vec[i]).printed == false) { // this is where it'll be grouped
-                        map.at(vec[i]).printed = true;
-                        output += vec[i];
-                        output += ", ";
+
+                        int first = map.at(vec[i]).aType;
+
+                        for(int j = i; j < vec.size(); j++) {   // could be int j = 0 instead
+                            if(map.at(vec[j]).aType == first) {
+                                map.at(vec[j]).printed = true;
+                                output += vec[j];
+                                output += ", ";
+                            }
+                        }
+                        output = output.substr(0, output.size()-2);
+                        output += ": ";
+                        output += type;
+                        output += " #\n";
                     }
-                    output = output.substr(0, output.size()-2);
-                    output += ": ";
-                    output += type;
-                    output += " #\n";
+
                 }
             }
             // out for loop
@@ -691,9 +701,9 @@ int Parser::parse_if_stmt(){
     }
     v = parse_expression();
 
-    if(v.type == T) {
-        v.type = BOO;
-    }
+//    if(v.type == T) {
+//        v.type = BOO;
+//    }
 
     if(v.type != BOO) {
         type_mismatch(token.line_no, "C4");
@@ -728,9 +738,9 @@ int Parser::parse_while_stmt(){
     }
     v = parse_expression();
 
-    if(v.type == T) {
-        v.type = BOO;
-    }
+//    if(v.type == T) {
+//        v.type = BOO;
+//    }
 
     if(v.type != BOO) {
         type_mismatch(token.line_no, "C4");
@@ -839,27 +849,10 @@ int main() {
     Parser parser;
     parser.parse_program();
 
-    cout << "lexeme\ttype\tline_num\taType\ttarget\n";
-    for (auto itr = parser.map.begin(); itr != parser.map.end(); itr++) {
-        cout << itr->first << '\t' << itr->second.type << "\t" << itr->second.line_num << "\t\t"
-        << itr->second.aType << "\t" << itr->second.target << '\n';
-    }
-
-//    cout << "\n**************\n";
-//    cout << "ID Vector\n";
-//    for (auto i = parser.vec.begin(); i != parser.vec.end(); ++i)
-//        cout << *i << " ";
-//    cout << "\n**************\n";
-
-//    LexicalAnalyzer lexer;
-//    Token token;
-//
-//    token = lexer.GetToken();
-//    token.Print();
-//    while (token.token_type != END_OF_FILE)
-//    {
-//        token = lexer.GetToken();
-//        token.Print();
+//    cout << "lexeme\ttype\tline_num\taType\ttarget\n";
+//    for (auto itr = parser.map.begin(); itr != parser.map.end(); itr++) {
+//        cout << itr->first << '\t' << itr->second.type << "\t" << itr->second.line_num << "\t\t"
+//        << itr->second.aType << "\t" << itr->second.target << '\n';
 //    }
 
 
