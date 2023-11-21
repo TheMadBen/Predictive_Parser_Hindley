@@ -1,9 +1,3 @@
- /*
- * Copyright (C) Rida Bazzi, 2016
- * Edited by Joshua Elkins, 2023
- *
- * Do not share this file with anyone
- */
 #ifndef __LEXER__H__
 #define __LEXER__H__
 
