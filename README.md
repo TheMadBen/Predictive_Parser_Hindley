@@ -107,6 +107,7 @@ This is to show that the code works as inttended given the test cases; however, 
 Example:<br>
 In the same directory as the project, create a txt file with the name of your choosing. Let's make it myTest.txt<br>
 Enter test case that adheres to the grammar rules above<br>
+For example:<br><br>
 x, y: real;<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;switch (+ * - x y y z) {<br>
@@ -117,5 +118,11 @@ x, y: real;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = * s t;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-}<br>
+}<br><br>
+
+Make sure that you've already run make, and then enter './a.out < myTest.txt'<br>
+The expected output:<br>
+TYPE MISMATCH 3 C5<br>
+What this is saying that is that there's a type mismatch on line 3 that violates the rule C5 listed above.<br>
+
 
