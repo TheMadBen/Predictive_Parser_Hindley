@@ -20,6 +20,78 @@ NUM constants are of type int.<br>
 REALNUM constants are of type real.<br>
 true and false values are of type bool.<br><br>
 
-We can infer that because 1 is if type INT that x is also of type INT. Since right hand expression just consists of x + 1, we say that the right hand side is of type INT. Then we can infer that the function g is of type INT.<br>
-<img width="286" alt="image" src="https://github.com/TheMadBen/Predictive_Parser_Hindley/assets/105576188/f7ab7cae-900c-4ded-b378-f544ff08f035">
+We can infer that because 1 is if type INT that x is also of type INT. Since right hand expression just consists of x + 1, we say that the right hand side is of type INT. Then we can infer that the function g is of type INT.<br><br>
+
+There are the lexer files that recognizes the following tokens:<br><br>
+INT = “int”<br>
+REAL = “real”<br>
+BOO = “bool”<br>
+TRUE = “true”<br>
+FALSE = “false”<br>
+IF = “if”<br>
+WHILE = “while”<br>
+SWITCH = “switch”<br>
+CASE = “case”<br>
+NOT = “!”<br>
+PLUS = “+”<br>
+MINUS = “-”<br>
+MULT = “*”<br>
+DIV = “/”<br>
+GREATER = “>”<br>
+LESS = “<”<br>
+GTEQ = “>=”<br>
+LTEQ = “<=”<br>
+NOTEQUAL = “<>”<br>
+LPAREN = “(”<br>
+RPAREN = “)”<br>
+NUM = (pdigit digit*) + 0<br>
+REALNUM = NUM “.” digit digit*<br>
+PUBLIC = “public”<br>
+PRIVATE = “private”<br>
+EQUAL = “=”<br>
+COLON = “:”<br>
+COMMA = “,”<br>
+SEMICOLON = “;”<br>
+LBRACE = “{”<br>
+RBRACE = “}”<br>
+ID = letter (letter + digit)*<br><br>
+
+Our input/language adheres to these rules:<br><br>
+program -> global_vars body<br>
+global_vars -> ε<br>
+global_vars -> var_decl_list<br>
+var_decl_list -> var_decl<br>
+var_decl_list -> var_decl var_decl_list<br>
+var_decl -> var_list COLON type_name SEMICOLON<br>
+var_list -> ID<br>
+var_list -> ID COMMA var_list<br>
+type_name -> INT<br>
+type_name -> REAL<br>
+type_name -> BOOL<br>
+body -> LBRACE stmt_list RBRACE<br>
+stmt_list -> stmt<br>
+stmt_list -> stmt stmt_list<br>
+stmt -> assignment_stmt<br>
+stmt -> if_stmt<br>
+stmt -> while_stmt<br>
+stmt -> switch_stmt<br>
+assignment_stmt -> ID EQUAL expression SEMICOLON<br>
+expression -> primary<br>
+expression -> binary_operator expression expression<br>
+expression -> unary_operator expression<br>
+unary_operator -> NOT<br>
+binary_operator -> PLUS | MINUS | MULT | DIV<br>
+binary_operator -> GREATER | LESS | GTEQ | LTEQ | EQUAL | NOTEQUAL<br>
+primary -> ID<br>
+primary -> NUM<br>
+primary -> REALNUM<br>
+primary -> TRUE<br>
+primary -> FALSE<br>
+if_stmt -> IF LPAREN expression RPAREN body<br>
+while_stmt -> WHILE LPAREN expression RPAREN body<br>
+switch_stmt -> SWITCH LPAREN expression RPAREN LBRACE case_list RBRACE<br>
+case_list -> case<br>
+case_list -> case case_list<br>
+case -> CASE NUM COLON body<br>
+
 
