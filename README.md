@@ -2,7 +2,7 @@
 [Full specification of this project](https://github.com/TheMadBen/Predictive_Parser_Hindley/blob/master/CSE340_Project3.pdf)<br>
 Predictive Parser implementing Hindley Milner Type Checking<br>
 This program will infer whether a type is int, real, or bool.<br>
-Implemented using C/C++<br>
+Implemented using C++<br>
 
 # Supplementary Information
 Hindley Milner Type Checking isn't exactly type checking like the name implies; it is a form of type inference.<br>
@@ -97,4 +97,9 @@ case_list -> case<br>
 case_list -> case case_list<br>
 case -> CASE NUM COLON body<br>
 
-
+# Usage
+In this case, I used WSL for the command line.<br>
+Run the makefile using make<br>
+Run test1.sh by entering ./test1.sh<br>
+This shell script will run all of the test cases found in the test folder where you can find the expected output to each test case in the same folder.<br>
+This is to show that the code works as inttended given the test cases; however, you can create your own txt file and run it against this code.<br>
