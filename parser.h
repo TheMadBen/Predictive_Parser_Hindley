@@ -1,7 +1,3 @@
-/*
- * Created by Joshua Elkins
- *
- */
 #ifndef __PARSER__H__
 #define __PARSER__H__
 
