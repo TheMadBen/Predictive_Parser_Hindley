@@ -2,6 +2,7 @@
 [Full specification of this project](https://github.com/TheMadBen/Predictive_Parser_Hindley/blob/master/CSE340_Project3.pdf)<br>
 Predictive Parser implementing Hindley Milner Type Checking<br>
 This program will infer whether a type is int, real, or bool.<br>
+Implemented using C/C++<br>
 
 # Supplementary Information
 Hindley Milner Type Checking isn't exactly type checking like the name implies; it is a form of type inference.<br>
@@ -22,6 +23,7 @@ true and false values are of type bool.<br><br>
 
 We can infer that because 1 is if type INT that x is also of type INT. Since right hand expression just consists of x + 1, we say that the right hand side is of type INT. Then we can infer that the function g is of type INT.<br><br>
 
+# Lexical Analyzer
 There are the lexer files that recognizes the following tokens:<br><br>
 INT = “int”<br>
 REAL = “real”<br>
@@ -56,6 +58,7 @@ LBRACE = “{”<br>
 RBRACE = “}”<br>
 ID = letter (letter + digit)*<br><br>
 
+# Grammar
 Our input/language adheres to these rules:<br><br>
 program -> global_vars body<br>
 global_vars -> ε<br>
