@@ -102,4 +102,20 @@ In this case, I used WSL for the command line.<br>
 Run the makefile using make<br>
 Run test1.sh by entering ./test1.sh<br>
 This shell script will run all of the test cases found in the test folder where you can find the expected output to each test case in the same folder.<br>
-This is to show that the code works as inttended given the test cases; however, you can create your own txt file and run it against this code.<br>
+This is to show that the code works as inttended given the test cases; however, you can create your own txt file and run it against this code.<br><br>
+
+Example:<br>
+In the same directory as the project, create a txt file with the name of your choosing. Let's make it myTest.txt<br>
+Enter test case that adheres to the grammar rules above<br>
+x, y: real;<br>
+{<br>
+    switch (+ * - x y y z) {<br>
+        case 1: {<br>
+            x = * y 1;<br>
+        }<br>
+        case 2: {<br>
+            r = * s t;<br>
+        }<br>
+    }<br>
+}<br>
+
