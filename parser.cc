@@ -1,8 +1,3 @@
-/*
- * Created by: Joshua Elkins
- * Date: June 24th, 2023
- */
-
 #include <iostream>
 #include <string>
 #include "parser.h"
