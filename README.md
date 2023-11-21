@@ -104,10 +104,34 @@ Run test1.sh by entering ./test1.sh<br>
 This shell script will run all of the test cases found in the test folder where you can find the expected output to each test case in the same folder.<br>
 This is to show that the code works as inttended given the test cases; however, you can create your own txt file and run it against this code.<br><br>
 
-Example:<br>
+Example 1:<br>
 In the same directory as the project, create a txt file with the name of your choosing. Let's make it myTest.txt<br>
-Enter test case that adheres to the grammar rules above<br>
-For example:<br><br>
+Enter a test case that adheres to the grammar and follows the rules<br>
+For example:<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (> r s) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = * s t;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (= t u) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t = + u v;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;v = 0.0;<br>
+}<br>
+
+Enter './a.out < myTest.txt'<br><br>
+The expected output:<br>
+r: real #<br>
+s: real #<br>
+t: real #<br>
+u: real #<br>
+v: real #<br>
+We can see that v is a real number, and if we follow the rules above, u is a real number, then t is a real number, then s is a real number, then r is a real number<br>
+This is the order that the code assigns types because it uses recursion<br><br>
+
+Example 2: Mismatch<br>
+You can use the same myTest.txt or create a new one for this<br>
+Enter a test case that adheres to the grammar but vioalates the rules above whether it be one or more from C1 to C5<br>
+For example:<br>
 x, y: real;<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;switch (+ * - x y y z) {<br>
@@ -118,11 +142,11 @@ x, y: real;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = * s t;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-}<br><br>
+}<br>
 
-Make sure that you've already run make, and then enter './a.out < myTest.txt'<br>
+Enter './a.out < myTest.txt'<br><br>
 The expected output:<br>
-TYPE MISMATCH 3 C5<br>
-What this is saying that is that there's a type mismatch on line 3 that violates the rule C5 listed above.<br>
+TYPE MISMATCH 3 C5<br><br>
+What this is saying that is that there's a type mismatch on line 3 that violates the rule C5 listed above.<br><br>
 
-
+Note: This does not show all output variations but is further documented in the linked specifications at the top.
