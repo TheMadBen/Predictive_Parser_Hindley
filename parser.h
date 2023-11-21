@@ -53,22 +53,6 @@ class Parser {
         int parse_case_list();
         int parse_case();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
 
 #endif  //__PARSER__H__
